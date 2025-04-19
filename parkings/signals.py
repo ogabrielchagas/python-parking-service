@@ -8,3 +8,4 @@ def update_parking_spot_status(sender, instance, created, **kwargs):
     parking_spot = instance.parking_spot
     parking_spot.is_empty = instance.exit_time is not None
     parking_spot.save()
+    
