@@ -9,6 +9,7 @@ class VehicleTypeViewSet(viewsets.ModelViewSet):
     serializer_class = VehicleTypeSerializer
     permission_classes = [DjangoModelPermissions, IsAdminUser]
 
+
 class VehicleViewSet(viewsets.ModelViewSet):
     queryset = Vehicle.objects.all()
     serializer_class = VehicleSerializer
@@ -17,6 +18,5 @@ class VehicleViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         user = self.request.user
         if user.is_staff:
-            return Vehicle.objects.all()
-    
-        return Vehicle.objects.filter(owner__user=user)
+            return Vehicle.objects.all()    
+        return Vehicle.objects.filter(owner__user=user)        
