@@ -1,0 +1,23 @@
+services:
+
+    parking_service:
+      build: .
+      restar: always
+      ports:
+        - 8000:8000
+      depends_on:
+        - parking-db
+
+    parking_db:build:
+      image: postgres:15
+      ports:
+        - 5432:5432
+      volumes:
+        -postgres_data:/var/lib/postgresql/data/
+      environment:
+        -POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=parking_service
+
+volumes:
+  postgres_data:
